@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load sizify %}
+
+{% block title %}Список загруженных файлов{% endblock %}
+
+{% block content %}
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Имя</th>
+        <th scope="col">Описание</th>
+        <th scope="col">Размер</th>
+        <th scope="col">Тип</th>
+        <th scope="col">Дата/время загрузки</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+
+    {% for file in files %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ file.name }}</td>
+        <td>{{ file.description }} </td>
+        <td>{{ file.size|sizify }} </td>
+        <td>{{ file.content_type }} </td>
+        <td>{{ file.created_at }} </td>
+        
+        <td><a href="{% url 'download' file.pk %}">Скачать</a> <a href="{% url 'delete' file.pk %}">Удалить</a></td>
+      </tr>
+    {% empty %}
+    <tr>
+        <td colspan="4">загруженных файлов пока нет</td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+  </table>
+
+
+{% endblock %}

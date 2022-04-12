@@ -52,6 +52,7 @@ REDISTOGO_URL=redis://localhost:6379
 
 Для запуска проекта в контейнере перейди в папку проекта и запусти docker-compose:
 ```
+docker-compose build
 docker-compose --env-file ./src/project/.env up
 ```
 Открой браузер и укажи в адресной строке:
